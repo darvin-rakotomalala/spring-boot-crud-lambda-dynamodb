@@ -81,6 +81,7 @@ resource "aws_lambda_function" "hello_lambda" {
     var.policy_lambda_basic_execution,
     var.lambda_app_policy_id,
     aws_s3_bucket.lambda_artifacts,
+    var.dynamodb_table_arn,
   ]
 
   tags = merge(var.common_tags, {

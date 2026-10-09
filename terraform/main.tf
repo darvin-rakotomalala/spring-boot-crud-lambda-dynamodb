@@ -56,6 +56,7 @@ module "lambda" {
   log_group_lambda_function_names = module.cloudwatch.log_group_names.lambda_function
   log_retention_days              = var.log_retention_days
   policy_lambda_basic_execution   = module.iam.policy_lambda_basic_execution
+  dynamodb_table_arn              = module.dynamodb.dynamodb_table_arn
 }
 
 #########################################################

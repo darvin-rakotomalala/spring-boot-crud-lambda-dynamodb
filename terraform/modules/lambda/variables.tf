@@ -118,3 +118,8 @@ variable "lambda_app_policy_id" {
   description = "ID of the inline application policy (<role-name>:<policy-name>)"
   type        = string
 }
+
+variable "dynamodb_table_arn" {
+  description = "DynamoDB table ARN."
+  type        = string
+}

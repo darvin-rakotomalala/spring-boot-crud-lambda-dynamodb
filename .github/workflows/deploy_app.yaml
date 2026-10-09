@@ -85,9 +85,21 @@ jobs:
       # Wait until it's Active so the alias never points at a version that isn't ready.
       - name: Wait for published version to become Active
         run: |
-          aws lambda wait function-active-v2 \
-            --function-name "$FUNCTION_NAME" \
-            --qualifier "${{ steps.publish.outputs.version }}"
+          VERSION="${{ steps.publish.outputs.version }}"
+
+          if ! aws lambda wait function-active-v2 \
+                --function-name "$FUNCTION_NAME" \
+                --qualifier "$VERSION"; then
+            echo "::error::Version $VERSION did not become Active"
+            aws lambda get-function-configuration \
+              --function-name "$FUNCTION_NAME" \
+              --qualifier "$VERSION" \
+              --query '{State:State,StateReason:StateReason,StateReasonCode:StateReasonCode,LastUpdateStatus:LastUpdateStatus,LastUpdateStatusReason:LastUpdateStatusReason,Runtime:Runtime,Handler:Handler,SnapStart:SnapStart}' \
+              --output json
+            echo "---- recent function logs ----"
+            aws logs tail "/aws/lambda/${FUNCTION_NAME}" --since 15m || true
+            exit 1
+          fi
 
       - name: Verify SnapStart is on for the new version
         run: |
