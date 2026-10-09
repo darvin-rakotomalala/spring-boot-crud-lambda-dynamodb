@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "6ff49c66-336a-40ae-aef4-15b2b8559659",
+		"name": "crud-lambda-dynamodb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13359435"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://j17t61vnl4.execute-api.us-east-1.amazonaws.com/dev/health",
+					"protocol": "https",
+					"host": [
+						"j17t61vnl4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"testpost@example.com\",\n    \"name\": \"TEST CREATE USER\",\n    \"status\": \"PENDING\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://j17t61vnl4.execute-api.us-east-1.amazonaws.com/dev/users",
+					"protocol": "https",
+					"host": [
+						"j17t61vnl4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://j17t61vnl4.execute-api.us-east-1.amazonaws.com/dev/users/6ba4906b-b305-48bc-a870-3855ff5b4636",
+					"protocol": "https",
+					"host": [
+						"j17t61vnl4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"users",
+						"6ba4906b-b305-48bc-a870-3855ff5b4636"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://j17t61vnl4.execute-api.us-east-1.amazonaws.com/dev/users/by-email?email=bob@example.com",
+					"protocol": "https",
+					"host": [
+						"j17t61vnl4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"users",
+						"by-email"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "bob@example.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"testupdate@example.com\",\n  \"name\": \"TEST UPDATE USER\",\n  \"status\": \"INACTIVE\",\n  \"userId\": \"6ba4906b-b305-48bc-a870-3855ff5b4636\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://j17t61vnl4.execute-api.us-east-1.amazonaws.com/dev/users",
+					"protocol": "https",
+					"host": [
+						"j17t61vnl4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://j17t61vnl4.execute-api.us-east-1.amazonaws.com/dev/users/by-name?name=Smith",
+					"protocol": "https",
+					"host": [
+						"j17t61vnl4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"users",
+						"by-name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Smith"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User by status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://j17t61vnl4.execute-api.us-east-1.amazonaws.com/dev/users/by-status?status=INACTIVE",
+					"protocol": "https",
+					"host": [
+						"j17t61vnl4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"users",
+						"by-status"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "INACTIVE"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Query user by status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://j17t61vnl4.execute-api.us-east-1.amazonaws.com/dev/users/query-by-status?status=INACTIVE&size=&page=",
+					"protocol": "https",
+					"host": [
+						"j17t61vnl4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"users",
+						"query-by-status"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "INACTIVE"
+						},
+						{
+							"key": "size",
+							"value": ""
+						},
+						{
+							"key": "page",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://j17t61vnl4.execute-api.us-east-1.amazonaws.com/dev/users?size=&page=",
+					"protocol": "https",
+					"host": [
+						"j17t61vnl4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"users"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": ""
+						},
+						{
+							"key": "page",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://j17t61vnl4.execute-api.us-east-1.amazonaws.com/dev/users/aad9d20d-9fcc-4565-b040-05007f950c53",
+					"protocol": "https",
+					"host": [
+						"j17t61vnl4",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"users",
+						"aad9d20d-9fcc-4565-b040-05007f950c53"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
