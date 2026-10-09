@@ -309,6 +309,24 @@ data "aws_iam_policy_document" "github_deploy" {
     actions   = ["iam:GetOpenIDConnectProvider", "iam:ListOpenIDConnectProviderTags"]
     resources = ["arn:${var.current_partition}:iam::${var.current_account_id}:oidc-provider/token.actions.githubusercontent.com"]
   }
+
+  # Workflow uploads the Lambda zip, and Lambda reads it back using the caller's credentials
+  statement {
+    sid = "ArtifactBucketObjects"
+    actions = [
+      "s3:PutObject",
+      "s3:GetObject",
+      "s3:AbortMultipartUpload",
+    ]
+    resources = ["arn:${var.current_partition}:s3:::${var.lambda_artifacts_bucket_name}/${var.function_name}/*"]
+  }
+
+  statement {
+    sid       = "ArtifactBucketList"
+    actions   = ["s3:ListBucket", "s3:GetBucketLocation"]
+    resources = ["arn:${var.current_partition}:s3:::${var.lambda_artifacts_bucket_name}"]
+  }
+
 }
 
 resource "aws_iam_role_policy" "github_deploy" {

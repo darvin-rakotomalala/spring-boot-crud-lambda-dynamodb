@@ -111,3 +111,8 @@ variable "api_log_group_name" {
   description = "Log group for API Gateway access logs."
   type        = string
 }
+
+variable "lambda_artifacts_bucket_name" {
+  description = "Set this as the ARTIFACT_BUCKET variable in the GitHub dev environment"
+  type        = string
+}

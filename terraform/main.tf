@@ -7,22 +7,23 @@ module "iam" {
   naming_prefix = local.naming_prefix
   common_tags   = local.common_tags
 
-  api_log_group_name          = var.api_log_group_name
-  app_log_group_name          = var.app_log_group_name
-  create_github_actions_role  = var.create_github_actions_role
-  create_github_oidc_provider = var.create_github_oidc_provider
-  current_account_id          = data.aws_caller_identity.current.account_id
-  current_partition           = data.aws_partition.current.partition
-  dynamodb_kms_key_arn        = module.kms.dynamodb_kms_key_arn
-  dynamodb_table_arn          = module.dynamodb.dynamodb_table_arn
-  function_name               = var.function_name
-  github_org                  = var.github_org
-  github_repo                 = var.github_repo
-  kms_cloudwatch_key_arn      = module.kms.kms_cloudwatch_key_arn
-  lambda_log_group_name       = var.lambda_log_group_name
-  log_group_app_arn           = module.cloudwatch.log_group_arns.application
-  manage_api_gateway_account  = var.manage_api_gateway_account
-  table_name                  = var.table_name
+  api_log_group_name           = var.api_log_group_name
+  app_log_group_name           = var.app_log_group_name
+  create_github_actions_role   = var.create_github_actions_role
+  create_github_oidc_provider  = var.create_github_oidc_provider
+  current_account_id           = data.aws_caller_identity.current.account_id
+  current_partition            = data.aws_partition.current.partition
+  dynamodb_kms_key_arn         = module.kms.dynamodb_kms_key_arn
+  dynamodb_table_arn           = module.dynamodb.dynamodb_table_arn
+  function_name                = var.function_name
+  github_org                   = var.github_org
+  github_repo                  = var.github_repo
+  kms_cloudwatch_key_arn       = module.kms.kms_cloudwatch_key_arn
+  lambda_log_group_name        = var.lambda_log_group_name
+  log_group_app_arn            = module.cloudwatch.log_group_arns.application
+  manage_api_gateway_account   = var.manage_api_gateway_account
+  table_name                   = var.table_name
+  lambda_artifacts_bucket_name = module.lambda.lambda_artifacts_bucket_name
 }
 
 #########################################################
