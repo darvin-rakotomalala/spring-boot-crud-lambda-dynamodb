@@ -10,6 +10,7 @@ env:
   AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
   FUNCTION_NAME: ${{ vars.FUNCTION_NAME }}
   ALIAS_NAME: ${{ vars.ALIAS_NAME }}   # must match var.lambda_alias_name in Terraform
+  ARTIFACT_BUCKET: ${{ vars.ARTIFACT_BUCKET }}
 
 permissions:
   id-token: write       # Required for requesting the OIDC JWT
@@ -52,6 +53,13 @@ jobs:
           role-to-assume: ${{ env.AWS_ROLE_ARN }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Upload package to S3
+        id: upload
+        run: |
+          KEY="${FUNCTION_NAME}/${GITHUB_SHA}.zip"
+          aws s3 cp target/spring-boot-crud-lambda-dynamodb.zip "s3://${ARTIFACT_BUCKET}/${KEY}"
+          echo "key=$KEY" >> "$GITHUB_OUTPUT"
+
       # --publish creates a new numbered version. Because SnapStart is set to
       # apply_on = PublishedVersions, that version gets its snapshot created here.
       - name: Update code and publish new version
@@ -59,7 +67,8 @@ jobs:
         run: |
           VERSION=$(aws lambda update-function-code \
             --function-name "$FUNCTION_NAME" \
-            --zip-file fileb://target/spring-boot-crud-lambda-dynamodb.zip \
+            --s3-bucket "$ARTIFACT_BUCKET" \
+            --s3-key "${{ steps.upload.outputs.key }}" \
             --publish \
             --query 'Version' \
             --output text)

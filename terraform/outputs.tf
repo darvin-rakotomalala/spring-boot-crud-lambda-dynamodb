@@ -61,3 +61,12 @@ output "dynamodb_kms_key_alias_name" {
   description = "The alias name assigned to the DynamoDB KMS key."
   value       = module.kms.dynamodb_kms_key_alias_name
 }
+
+output "lambda_artifacts_bucket_name" {
+  description = "Set this as the ARTIFACT_BUCKET variable in the GitHub dev environment"
+  value       = module.lambda.lambda_artifacts_bucket_name
+}
+
+output "lambda_artifacts_bucket_arn" {
+  value = module.lambda.lambda_artifacts_bucket_arn
+}

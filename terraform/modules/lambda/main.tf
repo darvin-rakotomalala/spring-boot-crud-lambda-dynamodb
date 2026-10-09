@@ -94,6 +94,10 @@ resource "aws_lambda_alias" "lambda_dev" {
   description      = "Alias for the ${var.api_stage_name} stage, backed by SnapStart-enabled published versions"
   function_name    = aws_lambda_function.hello_lambda.function_name
   function_version = aws_lambda_function.hello_lambda.version
+
+  lifecycle {
+    ignore_changes = [function_version]
+  }
 }
 
 # Allow API Gateway (this API, this stage only) to invoke the alias

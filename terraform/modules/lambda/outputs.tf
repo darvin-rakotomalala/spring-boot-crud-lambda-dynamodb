@@ -31,3 +31,13 @@ output "lambda_dev_alias_invoke_arn" {
   description = "Invoke ARN of the Lambda alias (use as the API Gateway integration uri)"
   value       = aws_lambda_alias.lambda_dev.invoke_arn
 }
+
+output "lambda_artifacts_bucket_name" {
+  description = "Name of the S3 bucket that stores Lambda deployment packages"
+  value       = aws_s3_bucket.lambda_artifacts.id
+}
+
+output "lambda_artifacts_bucket_arn" {
+  description = "ARN of the Lambda artifacts bucket (use in the GitHub OIDC role policy)"
+  value       = aws_s3_bucket.lambda_artifacts.arn
+}
