@@ -84,7 +84,7 @@ The infrastructure must be created before the application can be deployed.
 Requests go to `<invoke_url>/{any-path}`, which routes through API Gateway's Lambda proxy integration to the Spring Boot
 app via `StreamLambdaHandler`.
 
-`$ GET <invoke_url>/hi`
+`$ GET <invoke_url>/health`
 
 | Method | Path                                     | Description                                 |
 |--------|------------------------------------------|---------------------------------------------|
