@@ -14,10 +14,10 @@ variable "function_name" {
   type        = string
 }
 
-variable "lambda_zip_path" {
-  description = "Path to the built Spring Boot Lambda deployment package (.zip)"
-  type        = string
-}
+# variable "lambda_zip_path" {
+#   description = "Path to the built Spring Boot Lambda deployment package (.zip)"
+#   type        = string
+# }
 
 variable "lambda_handler" {
   description = "Fully qualified Lambda handler method"

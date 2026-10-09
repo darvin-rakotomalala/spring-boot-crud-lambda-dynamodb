@@ -51,7 +51,7 @@ module "lambda" {
   lambda_runtime                  = var.lambda_runtime
   lambda_timeout                  = var.lambda_timeout
   lambda_tracing_mode             = var.lambda_tracing_mode
-  lambda_zip_path                 = var.lambda_zip_path
+  # lambda_zip_path                 = var.lambda_zip_path
   log_group_app_names             = module.cloudwatch.log_group_names.lambda_function
   log_group_lambda_function_names = module.cloudwatch.log_group_names.lambda_function
   log_retention_days              = var.log_retention_days

@@ -36,7 +36,8 @@ api_throttling_rate_limit     = 100
 api_throttling_burst_limit    = 200
 manage_api_gateway_account    = true
 lambda_environment = {
-  # LOG_LEVEL = "debug"
+  SPRING_PROFILES_ACTIVE = "lambda"
+  APP_DATA_INIT_ENABLED  = "false"
 }
 lambda_tracing_mode   = "Active"
 lambda_description    = "AWS Serverless Spring Boot 4 API"

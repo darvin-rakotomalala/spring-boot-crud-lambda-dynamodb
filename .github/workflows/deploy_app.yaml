@@ -97,7 +97,11 @@ jobs:
               --query '{State:State,StateReason:StateReason,StateReasonCode:StateReasonCode,LastUpdateStatus:LastUpdateStatus,LastUpdateStatusReason:LastUpdateStatusReason,Runtime:Runtime,Handler:Handler,SnapStart:SnapStart}' \
               --output json
             echo "---- recent function logs ----"
-            aws logs tail "/aws/lambda/${FUNCTION_NAME}" --since 15m || true
+            LOG_GROUP=$(aws lambda get-function-configuration \
+              --function-name "$FUNCTION_NAME" \
+              --query 'LoggingConfig.LogGroup' --output text)
+            echo "---- logs from $LOG_GROUP ----"
+            aws logs tail "$LOG_GROUP" --since 15m || true
             exit 1
           fi
 

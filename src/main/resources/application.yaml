@@ -37,14 +37,6 @@ build:
   timestamp: '@maven.build.timestamp@'
   version: '@project.version@'
 
-modules:
-  logging:
-    logs:
-      folder:
-        path: ./logs
-    application:
-      name: '@project.artifactId@'
-
 server:
   port: 8080
 
